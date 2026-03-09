@@ -1,0 +1,127 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+h1 {
+  font-size: 1.8rem;
+  color: #f0c040;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #888;
+  margin-bottom: 32px;
+  font-size: 0.95rem;
+}
+
+.search-box {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-box input:focus {
+  border-color: #f0c040;
+}
+
+.search-box button {
+  padding: 10px 24px;
+  font-size: 1rem;
+  background: #f0c040;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.search-box button:hover:not(:disabled) {
+  background: #e0b030;
+}
+
+.search-box button:disabled {
+  background: #555;
+  color: #888;
+  cursor: not-allowed;
+}
+
+.status {
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+.error {
+  color: #ff6b6b;
+  font-size: 0.95rem;
+  padding: 10px 14px;
+  background: #2a1010;
+  border-radius: 6px;
+  border: 1px solid #5a2020;
+}
+
+.result-count {
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  color: #aaa;
+}
+
+.result-count strong {
+  color: #f0c040;
+}
+
+.no-results {
+  color: #888;
+  padding: 20px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+thead tr {
+  background: #1a1a2e;
+  color: #f0c040;
+}
+
+th, td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #222;
+}
+
+tbody tr:hover {
+  background: #1a1a2e;
+}
+
+td a {
+  color: #c0d8ff;
+  text-decoration: none;
+}
+
+td a:hover {
+  text-decoration: underline;
+  color: #f0c040;
+}
+
+.col-title { min-width: 300px; }
+.col-author { min-width: 80px; white-space: nowrap; }
+.col-date { min-width: 90px; white-space: nowrap; color: #888; }
+.col-views { min-width: 60px; text-align: right; color: #888; }
+.col-rec { min-width: 50px; text-align: right; color: #888; }

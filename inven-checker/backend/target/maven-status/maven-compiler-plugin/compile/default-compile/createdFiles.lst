@@ -1,0 +1,4 @@
+com\lostark\invenchecker\model\BoardPost.class
+com\lostark\invenchecker\InvenCheckerApplication.class
+com\lostark\invenchecker\service\InvenSearchService.class
+com\lostark\invenchecker\controller\SearchController.class
