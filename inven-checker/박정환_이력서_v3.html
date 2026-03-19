@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>박정환 · 이력서</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --text: #111827;
+      --sub: #374151;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #ffffff;
+    }
+
+    html { font-size: 14px; }
+
+    body {
+      font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      color: var(--text);
+      background: #f3f4f6;
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Page ── */
+    .page {
+      max-width: 794px;
+      margin: 32px auto;
+      background: var(--bg);
+      padding: 52px 56px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+    }
+
+    @media print {
+      body { background: white; }
+      .page {
+        margin: 0;
+        padding: 40px 48px;
+        box-shadow: none;
+        max-width: 100%;
+      }
+    }
+
+    /* ── Header ── */
+    .header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 2px solid var(--text);
+    }
+    .header-name {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .header-title {
+      font-size: 15px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 10px;
+      letter-spacing: -0.2px;
+    }
+    .header-summary {
+      font-size: 13px;
+      color: var(--sub);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+    .header-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      align-items: flex-end;
+      padding-top: 4px;
+    }
+    .contact-item {
+      font-size: 12.5px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .contact-item .icon {
+      width: 16px;
+      height: 16px;
+      background: var(--accent);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 9px;
+    }
+
+    /* ── Stats Row ── */
+    .stats-row {
+      display: flex;
+      gap: 0;
+      margin-bottom: 36px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .stat {
+      flex: 1;
+      padding: 14px 18px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ── Section ── */
+    .section { margin-bottom: 32px; }
+
+    .sec-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .skill-row {
+      display: flex;
+      gap: 8px;
+      flex-direction: column;
+    }
+    .skill-cat {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--sub);
+      margin-bottom: 4px;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .tag.gray {
+      background: #f3f4f6;
+      color: var(--sub);
+    }
+
+    /* ── Experience ── */
+    .exp-item { margin-bottom: 28px; }
+    .exp-item:last-child { margin-bottom: 0; }
+
+    .exp-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+    .exp-company {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .exp-period {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .exp-role {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    /* ── Project ── */
+    .proj-item {
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+    }
+    .proj-item:last-child { margin-bottom: 0; }
+
+    .proj-header-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .proj-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+    .proj-period {
+      font-size: 11.5px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .proj-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+    .proj-tech .tag { font-size: 10.5px; padding: 1px 6px; }
+
+    .proj-desc {
+      font-size: 12.5px;
+      color: var(--sub);
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .detail-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .detail-list li {
+      font-size: 12.5px;
+      color: var(--sub);
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+    }
+    .detail-list li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .detail-list li strong { color: var(--text); font-weight: 600; }
+
+    /* ── Achievement ── */
+    .ach-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .ach-item {
+      background: var(--accent-light);
+      border-radius: 7px;
+      padding: 11px 14px;
+    }
+    .ach-num {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .ach-desc {
+      font-size: 11px;
+      color: var(--sub);
+      line-height: 1.4;
+    }
+
+    /* ── Cert / Edu ── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .cert-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .cert-name {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .cert-detail {
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    /* ── Personal Project marker ── */
+    .proj-item.personal {
+      border-left-color: #7c3aed;
+    }
+    .proj-item.personal .proj-tech .tag {
+      background: #f5f3ff;
+      color: #7c3aed;
+    }
+    .proj-item.personal .proj-name::after {
+      content: '개인 프로젝트';
+      font-size: 10px;
+      font-weight: 600;
+      background: #f5f3ff;
+      color: #7c3aed;
+      padding: 1px 7px;
+      border-radius: 4px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ HEADER ══ -->
+  <div class="header">
+    <div>
+      <div class="header-name">박 정 환</div>
+      <div class="header-title">Backend Developer · Full-Stack</div>
+      <div class="header-summary">
+        복잡한 도메인과 대규모 데이터 환경에서 <strong>성능·정합성·확장성</strong>을 구조로 풀어내는 백엔드 개발자.<br />
+        4년간 전자결재 시스템 백엔드를 전담하고, 퇴직 후에는 React · AI OCR 파이프라인까지 포함한
+        풀스택 개인 프로젝트를 직접 설계·구현했습니다.
+      </div>
+    </div>
+    <div class="header-contact">
+      <div class="contact-item">
+        <div class="icon">@</div>
+        pjh5929@naver.com
+      </div>
+      <div class="contact-item">
+        <div class="icon">T</div>
+        010-7185-3377
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ KEY STATS ══ -->
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-num">4년</div>
+      <div class="stat-label">(주)가비아<br />백엔드 개발</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">97%</div>
+      <div class="stat-label">API 응답 개선<br />3,000ms → 100ms</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0건</div>
+      <div class="stat-label">Kafka 도입 후<br />수동 복구 작업</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3개</div>
+      <div class="stat-label">서비스 레이어<br />단독 설계·구현</div>
+    </div>
+  </div>
+
+  <!-- ══ SKILLS ══ -->
+  <div class="section">
+    <div class="sec-title">기술 스택</div>
+    <div class="skills-grid">
+      <div class="skill-row">
+        <div class="skill-cat">Backend</div>
+        <div class="skill-tags">
+          <span class="tag">Java 17</span>
+          <span class="tag">Spring Boot</span>
+          <span class="tag">PHP</span>
+          <span class="tag">CodeIgniter</span>
+          <span class="tag">Laravel</span>
+          <span class="tag">REST API</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Frontend · AI</div>
+        <div class="skill-tags">
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">PaddleOCR</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">DB · Infra · Test</div>
+        <div class="skill-tags">
+          <span class="tag">MySQL / Aurora</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">Kafka</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">JUnit5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ EXPERIENCE ══ -->
+  <div class="section">
+    <div class="sec-title">경력</div>
+
+    <!-- 가비아 -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-company">(주)가비아</div>
+        <div class="exp-period">2020.11 – 2024.10 · 4년</div>
+      </div>
+      <div class="exp-role">정규직 · 대리 · 전자결재 백엔드 파트장</div>
+
+      <!-- Project 1 -->
+      <div class="proj-item">
+        <div class="proj-header-row">
+          <div class="proj-name">전자결재 차세대 REST API 개발</div>
+          <div class="proj-period">2022.08 – 2024.10</div>
+        </div>
+        <div class="proj-tech">
+          <span class="tag">Java 17</span>
+          <span class="tag">Spring Boot 3</span>
+          <span class="tag">MySQL / Aurora</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">Kafka</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">JUnit5</span>
+          <span class="tag">Mockito</span>
+        </div>
+        <div class="proj-desc">
+          10년 이상 운영된 PHP 모놀리식 전자결재 시스템을 Java / Spring Boot REST API 기반 차세대 구조로 전환.
+          기능 확장성·성능·운영 안정성을 목표로 MSA 방향의 아키텍처 설계·구현 총괄.
+        </div>
+        <ul class="detail-list">
+          <li>전자결재 핵심 도메인(문서·결재선·상태·이력·권한) <strong>REST API 20개 이상 재설계 및 구현 주도</strong>, 외부 ERP·그룹웨어·글로벌 시스템 연동 규격 표준화</li>
+          <li>MySQL(정형 결재 데이터) + MongoDB(문서 양식·첨부 비정형 데이터) <strong>멀티 DB 아키텍처</strong> 설계·구축</li>
+          <li><strong>Kafka 기반 이벤트 기록 및 자동 재처리 구조</strong> 설계·구현 — 네트워크 장애 시 데이터 유실 없는 멱등성 보장</li>
+          <li>인증은 공통 필터, 인가는 도메인 서비스 레벨에서 <strong>중앙화</strong>하여 권한 로직 재사용 구조 확보, 보안 리스크 감소</li>
+          <li>Docker 컨테이너화 + <strong>Kubernetes 롤링 배포</strong> 파이프라인 구축, 서비스 단위 무중단 배포 체계 마련</li>
+          <li>레거시에 부재했던 <strong>JUnit5 기반 단위·통합 테스트</strong> 설계·도입 — 리팩토링 시 회귀 버그 방지 체계 확립</li>
+        </ul>
+        <div class="ach-grid">
+          <div class="ach-item">
+            <div class="ach-num">3,000ms → 100ms</div>
+            <div class="ach-desc">트랜잭션 범위 재설계로 평균 API 응답 시간 97% 개선</div>
+          </div>
+          <div class="ach-item">
+            <div class="ach-num">월 수십 건 → 0건</div>
+            <div class="ach-desc">Kafka 도입 후 수동 복구 작업 완전 자동화</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="proj-item">
+        <div class="proj-header-row">
+          <div class="proj-name">전자결재 유지보수 / 고도화</div>
+          <div class="proj-period">2020.11 – 2024.10</div>
+        </div>
+        <div class="proj-tech">
+          <span class="tag">PHP</span>
+          <span class="tag">CodeIgniter</span>
+          <span class="tag">Laravel</span>
+          <span class="tag">MySQL / Aurora</span>
+          <span class="tag">Linux</span>
+        </div>
+        <div class="proj-desc">
+          사내 전자결재 레거시 서비스 백엔드 개발·운영 담당.
+          PHP 모놀리식 구조를 안정적으로 운영하면서 기능 고도화·대용량 데이터 성능 개선을 지속하고,
+          차세대 REST API 전환을 위한 구조적 기반 마련.
+        </div>
+        <ul class="detail-list">
+          <li>전자결재 문서 <strong>1,000만 건+ 누적 환경</strong>에서 슬로우 쿼리 로그 분석 → office_no 기반 파티셔닝, 복합 인덱스 재설계, 불필요 조인 제거로 조회 안정화</li>
+          <li>10년 이상 축적된 비즈니스 로직·예외 케이스·운영 노하우 <strong>체계적 문서화</strong> 및 차세대 전환을 위한 연계 구조 설계</li>
+          <li>레거시·차세대 병행 운영 기간 동안 <strong>데이터 정합성 유지</strong> 구조 설계</li>
+        </ul>
+        <div class="ach-grid" style="grid-template-columns: 1fr;">
+          <div class="ach-item">
+            <div class="ach-num">1,500ms → 300ms</div>
+            <div class="ach-desc">DB 파티셔닝·인덱스 최적화로 대용량 문서 검색 응답 시간 80% 개선</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 개인 프로젝트 -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-company">개인 프로젝트</div>
+        <div class="exp-period">2024.10 – 2025.03</div>
+      </div>
+      <div class="exp-role">퇴직 후 자기 주도 개발 — 풀스택 · AI 서비스</div>
+
+      <div class="proj-item personal">
+        <div class="proj-header-row">
+          <div class="proj-name">로스트아크 인벤 사건사고 검색기</div>
+          <div class="proj-period">2024.10 – 2025.03</div>
+        </div>
+        <div class="proj-tech">
+          <span class="tag">Java 17</span>
+          <span class="tag">Spring Boot 3.2</span>
+          <span class="tag">CompletableFuture</span>
+          <span class="tag">Jsoup</span>
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">PaddleOCR</span>
+          <span class="tag">JUnit5 · WireMock</span>
+        </div>
+        <div class="proj-desc">
+          게임 악성 유저를 자동으로 걸러내기 위해 직접 설계·구현한 풀스택 웹 서비스.
+          React 프론트엔드 · Spring Boot 병렬 처리 백엔드 · Python AI OCR 마이크로서비스 — 3개 서비스 레이어를 단독 구현.
+        </div>
+        <ul class="detail-list">
+          <li><strong>Spring Boot 병렬 처리 최적화</strong>: sterm 파라미터 규칙 파악 → 15페이지 URL 선계산 후 CompletableFuture 동시 요청, 게시글 본문 확인(×10) + 부캐 검색(×6) 전용 ThreadPool로 전체 검색 수 분 → 수 초</li>
+          <li><strong>AI OCR 마이크로서비스</strong>: HSV 마스크 전처리 → PaddleOCR PP-OCRv4(한국어 특화) → 위치 기반 3단계 닉네임 추출 전략 → 자모 혼동 오인식 보정 전 과정 직접 설계</li>
+          <li>크롤링 신뢰도 확보: "대상자:" 섹션 내 닉네임 존재 여부 정밀 검증, 오탐 방지 3단계 로직 구현 (실사용자 제보 기반 5가지 분리자 패턴 처리)</li>
+          <li><strong>React SPA</strong>: Document Picture-in-Picture API로 게임 전체화면 위 오버레이 구현, getDisplayMedia 화면 공유 + Canvas ROI 추출</li>
+          <li>Lost Ark Open API 연동으로 부캐 자동 조회 — Spring ↔ React ↔ FastAPI ↔ 외부 API 멀티 서비스 파이프라인 통합</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CERT & EDUCATION ══ -->
+  <div class="section">
+    <div class="sec-title">자격 · 어학 · 학력</div>
+    <div class="cert-grid">
+      <div class="cert-item">
+        <div class="cert-name">정보처리기사</div>
+        <div class="cert-detail">2018.05 취득 · 등록번호 18201120325Q</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-name">OPIc IH <span style="font-size:11px;color:#6b7280;">영어</span></div>
+        <div class="cert-detail">2025.09.27 취득 · 비즈니스 고급</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

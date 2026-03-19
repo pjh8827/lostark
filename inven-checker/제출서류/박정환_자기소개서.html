@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>박정환 · 자기소개서</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #1d4ed8;
+      --accent-bg: #eff6ff;
+      --text: #111827;
+      --sub: #374151;
+      --muted: #6b7280;
+      --border: #d1d5db;
+      --light: #f9fafb;
+    }
+    html { font-size: 14px; }
+    body {
+      font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      color: var(--text);
+      background: #e5e7eb;
+      line-height: 1.9;
+    }
+    .page {
+      max-width: 794px;
+      margin: 32px auto;
+      background: #fff;
+      padding: 52px 60px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.1);
+    }
+    @media print {
+      body { background: white; }
+      .page { margin: 0; padding: 40px 52px; box-shadow: none; max-width: 100%; }
+    }
+
+    /* Header */
+    .doc-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--text);
+    }
+    .doc-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .doc-title {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+    .doc-applicant {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    .doc-applicant strong { color: var(--accent); }
+
+    /* Section */
+    .q-section { margin-bottom: 36px; }
+    .q-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--accent);
+      border-left: 3px solid var(--accent);
+      padding-left: 12px;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+    .q-body {
+      font-size: 14px;
+      color: var(--sub);
+      line-height: 2;
+    }
+    .q-body p { margin-bottom: 14px; }
+    .q-body p:last-child { margin-bottom: 0; }
+    .q-body strong { color: var(--text); font-weight: 700; }
+    .q-body em {
+      font-style: normal;
+      background: var(--accent-bg);
+      color: var(--accent);
+      padding: 0 4px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+
+    /* Highlight box */
+    .highlight-box {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 13.5px;
+      color: var(--sub);
+      line-height: 1.8;
+    }
+    .highlight-box strong { color: var(--text); }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px dashed var(--border);
+      margin: 32px 0;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="doc-header">
+    <div class="doc-title">자 기 소 개 서</div>
+    <div class="doc-applicant">지원자: <strong>박 정 환</strong> &nbsp;|&nbsp; Backend Developer</div>
+  </div>
+
+  <!-- 1. 성장 과정 및 개발자로서의 역량 -->
+  <div class="q-section">
+    <div class="q-title">01 &nbsp;성장 과정과 개발자로서의 역량</div>
+    <div class="q-body">
+      <p>
+        저는 <strong>복잡한 문제를 구조적으로 해결하는 것</strong>에서 개발의 재미를 찾는 백엔드 개발자입니다.
+        (주)가비아에서 4년간 전자결재 시스템 백엔드를 전담하면서,
+        단순히 기능을 구현하는 것을 넘어 <strong>성능·정합성·운영 안정성</strong>을 함께 고민하는 방식으로 성장해 왔습니다.
+      </p>
+      <p>
+        개발자로서 크게 성장한 계기는 <em>레거시 시스템의 차세대 전환</em>을 처음부터 설계·주도한 경험입니다.
+        10년 이상 쌓인 PHP 모놀리식 코드를 분석하고, Java/Spring Boot REST API 구조로 전환하는 과정에서
+        단순 기술 교체가 아닌 <strong>도메인 설계, 데이터 아키텍처, 운영 안정성</strong>을 동시에 고려해야 했습니다.
+        이 경험이 저를 넓은 시야를 가진 개발자로 만들어 주었습니다.
+      </p>
+      <p>
+        퇴직 후에는 스스로 기획한 풀스택 개인 프로젝트를 통해 <strong>React 프론트엔드와 Python AI OCR 마이크로서비스</strong>까지
+        역량을 확장했습니다. 익숙하지 않은 기술 스택도 목적을 가지고 접근하면 빠르게 실용화할 수 있다는 것을 직접 증명했습니다.
+      </p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- 2. 경력 핵심 역량 -->
+  <div class="q-section">
+    <div class="q-title">02 &nbsp;경력 중심 핵심 역량</div>
+    <div class="q-body">
+      <p>
+        <strong>첫째, 대규모 데이터 환경에서의 성능 최적화 경험입니다.</strong>
+        전자결재 문서 1,000만 건 이상이 누적된 환경에서 슬로우 쿼리 로그를 직접 분석하고,
+        <em>office_no 기반 파티셔닝</em>·복합 인덱스 재설계·불필요 조인 제거를 단계적으로 적용해
+        조회 응답 시간을 <strong>1,500ms → 300ms</strong>로 단축했습니다.
+        단순히 인덱스를 추가하는 수준이 아니라, 데이터 접근 패턴 자체를 분석해 최적 구조를 도출하는 접근 방식을 체득했습니다.
+      </p>
+      <p>
+        <strong>둘째, 시스템 안정성과 데이터 정합성을 동시에 확보하는 설계 능력입니다.</strong>
+        MSA 전환 중 네트워크 단절로 인한 수동 복구 작업이 월 수십 건 발생하던 문제를
+        <em>Kafka 기반 이벤트 기록 + 자동 재처리 구조</em>로 해결해 수동 개입을 완전히 제거했습니다.
+        또한 트랜잭션 범위를 정밀하게 재설계해 DB 락 경합을 줄이고 평균 API 응답 시간을 <strong>3,000ms → 100ms</strong>로 97% 개선했습니다.
+      </p>
+      <p>
+        <strong>셋째, 복잡한 도메인 로직을 구조화하는 설계 감각입니다.</strong>
+        전자결재는 역할·문서 상태·조직 관계에 따라 권한이 복잡하게 달라지는 도메인입니다.
+        인증은 공통 필터, 인가는 도메인 서비스 레벨에서 중앙화하여
+        신규 API 추가 시 권한 로직을 재사용할 수 있는 구조를 만들었습니다.
+        이로 인해 보안 리스크를 줄이고 개발 효율도 향상시켰습니다.
+      </p>
+
+      <div class="highlight-box">
+        <strong>핵심 성과 요약</strong><br />
+        · API 응답 시간 <strong>3,000ms → 100ms</strong> (트랜잭션 범위 재설계, 97% 개선)<br />
+        · 대용량 문서 검색 <strong>1,500ms → 300ms</strong> (DB 파티셔닝·인덱스 튜닝, 80% 개선)<br />
+        · Kafka 도입으로 수동 복구 작업 <strong>월 수십 건 → 0건</strong> 완전 자동화
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- 3. 문제 해결 경험 -->
+  <div class="q-section">
+    <div class="q-title">03 &nbsp;기억에 남는 문제 해결 경험</div>
+    <div class="q-body">
+      <p>
+        가장 기억에 남는 경험은 개인 프로젝트에서 <strong>AI OCR 파이프라인을 처음부터 설계한 과정</strong>입니다.
+        처음에는 브라우저에서 동작하는 Tesseract.js를 시도했지만 한국 게임 폰트 인식률이 너무 낮아 탈락했고,
+        Python 기반의 EasyOCR도 범용 모델의 한계가 있었습니다.
+        결국 <em>PaddleOCR PP-OCRv4 한국어 특화 모델</em>을 채택했지만,
+        단순 OCR 적용이 아니라 <strong>HSV 마스크 전처리 → 위치 기반 3단계 닉네임 추출 전략 → 자모 혼동 오인식 보정</strong>까지
+        전 과정을 직접 설계했습니다.
+      </p>
+      <p>
+        이 과정에서 저는 "문제를 해결하려면 먼저 도메인을 충분히 이해해야 한다"는 것을 다시 한번 확인했습니다.
+        게임 UI의 레이아웃 구조를 분석하고, 어떤 위치에 닉네임이 있는지를 파악한 뒤에야
+        효과적인 전처리와 추출 전략을 설계할 수 있었습니다.
+        백엔드 개발자로서 새로운 기술 영역에도 <strong>구조적 사고를 그대로 적용</strong>할 수 있었던 경험이었습니다.
+      </p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- 4. 지원 동기 및 포부 -->
+  <div class="q-section">
+    <div class="q-title">04 &nbsp;지원 동기 및 입사 후 포부</div>
+    <div class="q-body">
+      <p>
+        저는 <strong>기술적 깊이와 실용성을 함께 추구하는 조직</strong>에서 일하고 싶습니다.
+        4년간의 경력을 통해 성능 개선, 아키텍처 설계, 운영 안정성 확보 등 백엔드 개발의 핵심 영역을 경험했고,
+        개인 프로젝트를 통해 프론트엔드와 AI 서비스까지 스스로 확장해 왔습니다.
+        이러한 경험을 바탕으로 <strong>팀의 기술적 문제를 함께 해결하고, 서비스 품질을 실질적으로 높이는 개발자</strong>가 되겠습니다.
+      </p>
+      <p>
+        입사 후에는 먼저 도메인과 기존 코드베이스를 깊이 이해하는 데 집중하겠습니다.
+        빠른 성과를 내기보다는 <strong>올바른 구조 위에서 지속 가능한 개선</strong>을 만들어 가는 것이
+        장기적으로 팀과 서비스에 더 큰 기여가 된다고 믿기 때문입니다.
+        이전 직장에서 레거시 시스템을 분석하고 차세대 구조로 전환하며 쌓은 경험을
+        최대한 빠르게 실무에 적용하겠습니다.
+      </p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>박정환 · 경력기술서</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #1d4ed8;
+      --accent2: #7c3aed;
+      --accent-bg: #eff6ff;
+      --accent2-bg: #f5f3ff;
+      --text: #111827;
+      --sub: #374151;
+      --muted: #6b7280;
+      --border: #d1d5db;
+      --light: #f9fafb;
+      --green: #065f46;
+      --green-bg: #ecfdf5;
+    }
+    html { font-size: 13.5px; }
+    body {
+      font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      color: var(--text);
+      background: #e5e7eb;
+      line-height: 1.65;
+    }
+    .page {
+      max-width: 850px;
+      margin: 32px auto;
+      background: #fff;
+      padding: 48px 52px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.1);
+    }
+    @media print {
+      body { background: white; }
+      .page { margin: 0; padding: 36px 44px; box-shadow: none; max-width: 100%; }
+      .page-break { page-break-before: always; }
+    }
+
+    /* Header */
+    .doc-header {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--text);
+      margin-bottom: 36px;
+    }
+    .doc-label { font-size: 11px; letter-spacing: 4px; color: var(--muted); margin-bottom: 4px; }
+    .doc-title { font-size: 28px; font-weight: 900; letter-spacing: -0.5px; }
+    .doc-sub { font-size: 13px; color: var(--muted); margin-top: 6px; }
+    .doc-sub strong { color: var(--accent); }
+
+    /* Company Block */
+    .company-block { margin-bottom: 44px; }
+    .company-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 12px 16px;
+      background: var(--text);
+      border-radius: 8px 8px 0 0;
+      color: white;
+    }
+    .company-name { font-size: 16px; font-weight: 800; letter-spacing: -0.3px; }
+    .company-meta { font-size: 12px; color: #9ca3af; }
+    .company-info {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      border-top: none;
+      margin-bottom: 20px;
+    }
+    .ci-item {
+      padding: 9px 14px;
+      border-right: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .ci-item:last-child { border-right: none; }
+    .ci-label { color: var(--muted); font-size: 10.5px; font-weight: 700; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .ci-val { color: var(--text); font-weight: 600; }
+
+    /* Project Card */
+    .proj-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .proj-card:last-child { margin-bottom: 0; }
+
+    .proj-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      background: var(--accent-bg);
+      border-bottom: 1px solid #bfdbfe;
+    }
+    .proj-card-header.purple { background: var(--accent2-bg); border-bottom-color: #ddd6fe; }
+
+    .proj-card-title { font-size: 14.5px; font-weight: 800; color: var(--accent); letter-spacing: -0.3px; }
+    .proj-card-title.purple { color: var(--accent2); }
+    .proj-card-period { font-size: 12px; color: var(--muted); white-space: nowrap; margin-left: 12px; }
+
+    .proj-card-body { padding: 16px 18px; }
+
+    /* Role badge */
+    .role-badge {
+      display: inline-block;
+      background: var(--accent-bg);
+      color: var(--accent);
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      border: 1px solid #bfdbfe;
+    }
+    .role-badge.purple { background: var(--accent2-bg); color: var(--accent2); border-color: #ddd6fe; }
+
+    /* Tech strip */
+    .tech-strip { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+    .tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      background: var(--light);
+      color: var(--sub);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .tag.blue { background: var(--accent-bg); color: var(--accent); border-color: #bfdbfe; }
+    .tag.purple { background: var(--accent2-bg); color: var(--accent2); border-color: #ddd6fe; }
+
+    /* Sub section */
+    .sub-sec { margin-bottom: 14px; }
+    .sub-sec:last-child { margin-bottom: 0; }
+    .sub-label {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--sub);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sub-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .detail-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .detail-list li {
+      padding-left: 16px;
+      position: relative;
+      color: var(--sub);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .detail-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 10px;
+      top: 3px;
+    }
+    .detail-list li.purple::before { color: var(--accent2); }
+    .detail-list li strong { color: var(--text); font-weight: 700; }
+
+    /* Achievement grid */
+    .ach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .ach-grid.two { grid-template-columns: repeat(2, 1fr); }
+    .ach-item {
+      background: var(--green-bg);
+      border-radius: 6px;
+      padding: 10px 13px;
+      border: 1px solid #a7f3d0;
+    }
+    .ach-num {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: -0.3px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .ach-desc { font-size: 11px; color: #064e3b; line-height: 1.4; }
+
+    /* Personal proj marker */
+    .personal-marker {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      background: var(--accent2-bg);
+      color: var(--accent2);
+      padding: 1px 7px;
+      border-radius: 3px;
+      border: 1px solid #ddd6fe;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* Summary table */
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      margin-bottom: 32px;
+    }
+    .summary-table th, .summary-table td {
+      border: 1px solid var(--border);
+      padding: 8px 3px;
+    }
+    .summary-table th {
+      background: var(--light);
+      font-weight: 700;
+      color: var(--sub);
+      text-align: center;
+    }
+    .summary-table td.center { text-align: center; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="doc-header">
+    <div class="doc-title">경 력 기 술 서</div>
+    <div class="doc-sub">지원자: <strong>박 정 환</strong> &nbsp;|&nbsp; Backend Developer · Full-Stack &nbsp;|&nbsp; 총 경력 4년</div>
+  </div>
+
+  <!-- 경력 요약 -->
+  <div style="margin-bottom:36px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">경력 요약</div>
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>기간</th>
+          <th>회사명</th>
+          <th>직위</th>
+          <th>담당 업무</th>
+          <th>고용형태</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center" style="white-space:nowrap;">2020.11 – 2024.10<br/><span style="color:var(--muted);font-size:11px;">4년</span></td>
+          <td><strong>(주)가비아</strong></td>
+          <td class="center">대리 · 파트장</td>
+          <td>전자결재 시스템 백엔드 개발·운영 총괄 (PHP 레거시 → Java REST API 차세대 전환)</td>
+          <td class="center">정규직</td>
+        </tr>
+        <tr>
+          <td class="center" style="white-space:nowrap;">2024.10 – 2026.03<br/><span style="color:var(--muted);font-size:11px;">1년 6개월</span></td>
+          <td><strong>개인 프로젝트</strong></td>
+          <td class="center">단독 개발</td>
+          <td>로스트아크 인벤 사건사고 검색기 — 풀스택 + AI OCR 마이크로서비스 설계·구현</td>
+          <td class="center">개인</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── (주)가비아 ── -->
+  <div class="company-block">
+    <div class="company-header">
+      <div class="company-name">(주)가비아</div>
+      <div class="company-meta">2020.11 – 2024.10 &nbsp;·&nbsp; 4년 &nbsp;·&nbsp; 정규직 대리</div>
+    </div>
+    <div class="company-info">
+      <div class="ci-item"><div class="ci-label">업종</div><div class="ci-val">IT 서비스 / SaaS</div></div>
+      <div class="ci-item"><div class="ci-label">직위</div><div class="ci-val">대리 · 파트장</div></div>
+      <div class="ci-item"><div class="ci-label">담당</div><div class="ci-val">전자결재 백엔드</div></div>
+      <div class="ci-item"><div class="ci-label">팀 규모</div><div class="ci-val">전자결재 파트</div></div>
+    </div>
+
+    <!-- Project 1 -->
+    <div class="proj-card">
+      <div class="proj-card-header">
+        <div class="proj-card-title">전자결재 차세대 REST API 개발</div>
+        <div class="proj-card-period">2022.08 – 2024.10 · 2년 2개월</div>
+      </div>
+      <div class="proj-card-body">
+        <div class="role-badge">역할: 파트장 · 백엔드 설계·구현 총괄 (단독 주도)</div>
+
+        <div class="tech-strip">
+          <span class="tag blue">Java 17</span>
+          <span class="tag blue">Spring Boot 3</span>
+          <span class="tag blue">MySQL / Aurora</span>
+          <span class="tag blue">MongoDB</span>
+          <span class="tag blue">Kafka</span>
+          <span class="tag blue">Docker</span>
+          <span class="tag blue">Kubernetes</span>
+          <span class="tag blue">JUnit5</span>
+          <span class="tag blue">Mockito</span>
+          <span class="tag">ERP 연동</span>
+          <span class="tag">그룹웨어 연동</span>
+        </div>
+
+        <div class="sub-sec">
+          <div class="sub-label">프로젝트 개요</div>
+          <p style="font-size:13px;color:var(--sub);line-height:1.7;">
+            10년 이상 운영된 PHP 모놀리식 전자결재 시스템을 Java/Spring Boot REST API 기반 차세대 구조로 전환하는 프로젝트.
+            기능 확장성·성능·운영 안정성을 목표로 MSA 방향의 아키텍처를 직접 설계하고 구현했습니다.
+          </p>
+        </div>
+
+        <div class="sub-sec">
+          <div class="sub-label">주요 수행 내용</div>
+          <ul class="detail-list">
+            <li><strong>REST API 설계·구현 주도:</strong> 전자결재 핵심 도메인(문서·결재선·상태·이력·권한) API 20개 이상 재설계 및 구현. 외부 ERP·그룹웨어·글로벌 시스템 연동 규격 표준화.</li>
+            <li><strong>멀티 DB 아키텍처 설계:</strong> 정형 결재 데이터는 MySQL/Aurora, 문서 양식·첨부 등 비정형 데이터는 MongoDB로 분리. 도메인 특성에 맞는 저장소 목적 분리 설계.</li>
+            <li><strong>Kafka 기반 이벤트 자동 복구 구조:</strong> 모든 처리 이벤트를 Kafka에 기록하고 네트워크 정상화 시 배치가 자동 재처리하는 멱등성 보장 구조 설계·구현. 장애 시에도 데이터 유실 없는 안정적 운영 확보.</li>
+            <li><strong>트랜잭션 범위 재설계:</strong> 로그 분석으로 불필요하게 넓은 트랜잭션이 DB 락을 과도하게 유지함을 확인. 데이터 정합성이 실제로 필요한 구간에만 트랜잭션을 적용하도록 재설계. 성능 테스트 직접 주도하여 검증.</li>
+            <li><strong>인증·인가 체계 중앙화:</strong> 역할·문서 상태·조직 관계에 따라 행위별 권한이 복잡하게 달라지는 도메인 특성 분석. 인증은 공통 필터, 인가는 도메인 서비스 레벨에서 중앙화하여 신규 API 추가 시 중복 구현 불필요한 구조 확보.</li>
+            <li><strong>Docker · Kubernetes 배포 파이프라인 구축:</strong> 전자결재 서비스 컨테이너화 및 Kubernetes 롤링 배포 파이프라인 구축. 서비스 단위 독립 배포 및 무중단 배포 체계 마련.</li>
+            <li><strong>JUnit5 기반 테스트 체계 도입:</strong> 레거시에 부재했던 단위·통합 테스트 설계·도입. API 리팩토링 시 회귀 버그 방지 체계 확립.</li>
+            <li>레거시 PHP 모놀리식 코드 분석 및 비즈니스 로직 분리·점진적 리팩토링 주도.</li>
+          </ul>
+        </div>
+
+        <div class="sub-sec">
+          <div class="sub-label">주요 성과</div>
+          <div class="ach-grid">
+            <div class="ach-item">
+              <div class="ach-num">3,000ms → 100ms</div>
+              <div class="ach-desc">트랜잭션 범위 재설계<br/>평균 API 응답 시간 97% 개선</div>
+            </div>
+            <div class="ach-item">
+              <div class="ach-num">월 수십 건 → 0건</div>
+              <div class="ach-desc">Kafka 자동 복구 도입<br/>수동 운영 개입 완전 제거</div>
+            </div>
+            <div class="ach-item">
+              <div class="ach-num">MSA 기반 구축</div>
+              <div class="ach-desc">단일 레거시 → 서비스 단위<br/>독립 배포 체계 마련</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="proj-card">
+      <div class="proj-card-header">
+        <div class="proj-card-title">전자결재 유지보수 / 고도화</div>
+        <div class="proj-card-period">2020.11 – 2024.10 · 4년</div>
+      </div>
+      <div class="proj-card-body">
+        <div class="role-badge">역할: 파트장 · 레거시 백엔드 운영 및 성능 개선 담당</div>
+
+        <div class="tech-strip">
+          <span class="tag">PHP</span>
+          <span class="tag">CodeIgniter</span>
+          <span class="tag">Laravel</span>
+          <span class="tag">MySQL / Aurora</span>
+          <span class="tag">Linux</span>
+          <span class="tag">DB Partitioning</span>
+          <span class="tag">Index Tuning</span>
+        </div>
+
+        <div class="sub-sec">
+          <div class="sub-label">프로젝트 개요</div>
+          <p style="font-size:13px;color:var(--sub);line-height:1.7;">
+            사내 전자결재 레거시 서비스 백엔드 개발·운영 담당. PHP 모놀리식 구조를 안정적으로 운영하면서
+            기능 고도화·대용량 데이터 성능 개선을 지속하고, 차세대 REST API 전환을 위한 구조적 기반 마련.
+          </p>
+        </div>
+
+        <div class="sub-sec">
+          <div class="sub-label">주요 수행 내용</div>
+          <ul class="detail-list">
+            <li><strong>대용량 문서 검색 성능 개선:</strong> 전자결재 문서 1,000만 건+ 누적 환경에서 슬로우 쿼리 로그 분석 → Full Table Scan·비효율 서브쿼리·인덱스 미활용 구간 특정. office_no 기반 파티셔닝·샤딩 적용, 복합 인덱스 재설계, 불필요 조인 제거 후 단계적 검증.</li>
+            <li><strong>레거시 안정 운영:</strong> 전자결재 핵심 기능(문서·결재선·상태·이력) 추가·보완 및 반복 장애 원인 분석·제거.</li>
+            <li><strong>차세대 전환 기반 마련:</strong> 10년 이상 축적된 전자결재 비즈니스 로직·예외 케이스·운영 노하우 체계적 문서화. 신규 Java REST API 서버 도입을 위한 연계 구조 설계.</li>
+            <li>레거시·차세대 병행 운영 기간 동안 데이터 정합성 유지 구조 설계.</li>
+          </ul>
+        </div>
+
+        <div class="sub-sec">
+          <div class="sub-label">주요 성과</div>
+          <div class="ach-grid two">
+            <div class="ach-item">
+              <div class="ach-num">1,500ms → 300ms</div>
+              <div class="ach-desc">DB 파티셔닝·인덱스 최적화로<br/>대용량 문서 검색 80% 개선</div>
+            </div>
+            <div class="ach-item">
+              <div class="ach-num">1,000만 건+</div>
+              <div class="ach-desc">대용량 전자결재 문서 환경<br/>안정적 조회 체계 확립</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 개인 프로젝트 ── -->
+  <div class="company-block">
+    <div class="company-header" style="background:#4c1d95;">
+      <div class="company-name">개인 프로젝트 <span style="font-size:12px;font-weight:400;color:#c4b5fd;">퇴직 후 자기 주도 개발</span></div>
+      <div class="company-meta">2024.10 – 2026.03 · 1년 6개월</div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-card-header purple">
+        <div class="proj-card-title purple">로스트아크 인벤 사건사고 검색기</div>
+        <div class="proj-card-period">2024.10 – 2026.03</div>
+      </div>
+      <div class="proj-card-body">
+        <div class="role-badge purple">역할: 전체 설계 및 구현 단독 (풀스택 · AI OCR 서비스)</div>
+
+        <div class="tech-strip">
+          <span class="tag purple">Java 17</span>
+          <span class="tag purple">Spring Boot 3.2</span>
+          <span class="tag purple">CompletableFuture</span>
+          <span class="tag purple">Jsoup</span>
+          <span class="tag purple">JUnit5</span>
+          <span class="tag purple">WireMock</span>
+          <span class="tag purple">React</span>
+          <span class="tag purple">TypeScript</span>
+          <span class="tag purple">Python</span>
+          <span class="tag purple">FastAPI</span>
+          <span class="tag purple">PaddleOCR</span>
+          <span class="tag purple">OpenCV</span>
+        </div>
+
+        <div class="sub-sec">
+          <div class="sub-label">프로젝트 개요</div>
+          <p style="font-size:13px;color:var(--sub);line-height:1.7;">
+            게임(로스트아크) 파티 구성 시 악성 유저를 자동으로 걸러내는 풀스택 웹 서비스.
+            React 프론트엔드 · Spring Boot 병렬 처리 백엔드 · Python FastAPI AI OCR 마이크로서비스
+            3개 서비스 레이어를 처음부터 단독 설계·구현.
+          </p>
+        </div>
+
+        <div class="sub-sec">
+          <div class="sub-label">Spring Boot 백엔드 — 병렬 처리 최적화</div>
+          <ul class="detail-list">
+            <li class="purple"><strong>병렬 처리 구조 설계:</strong> 캐릭터 6개 × 15페이지 × 본문 확인 = 수백 건 외부 HTTP 요청 문제 분석. sterm 파라미터가 +10,000 단위로 규칙적으로 증가함을 파악 → 나머지 14페이지 URL 선계산 후 CompletableFuture 동시 요청으로 전환.</li>
+            <li class="purple">목적별 ThreadPool 3개 분리 운영: 페이지 fetch 전용, 게시글 본문 확인 전용(×10), 부캐 검색 전용(×6) — 전체 강화 검색 수 분 → 수 초.</li>
+            <li class="purple"><strong>크롤링 신뢰도 확보:</strong> stype=content 검색의 오탐 문제를 개별 게시글 fetch 후 "대상자:" 섹션 내 닉네임 존재 여부 정밀 검증으로 해결. 실사용자 제보 기반 5가지 분리자 패턴 오탐 방지 로직 구현.</li>
+            <li class="purple">Lost Ark Open API 연동으로 부캐 자동 조회 — 닉네임 → 캐릭터 6개 병렬 검색.</li>
+            <li class="purple">WireMock 기반 통합 테스트 — 외부 의존성 없이 크롤링·파싱 로직 검증.</li>
+          </ul>
+        </div>
+
+        <div class="sub-sec">
+          <div class="sub-label">Python AI OCR 마이크로서비스</div>
+          <ul class="detail-list">
+            <li class="purple"><strong>OCR 엔진 선택:</strong> Tesseract.js(브라우저, 한국 게임 폰트 인식 부족) → EasyOCR(범용 모델 한계) 시도 후 PaddleOCR PP-OCRv4 한국어 특화 모델 채택. Windows oneDNN 충돌로 버전 2.7.x 고정.</li>
+            <li class="purple"><strong>전처리 파이프라인 설계:</strong> HSV 마스크로 흰색 픽셀 추출·반전 처리 → 한국 게임 UI 특성에 맞는 인식률 확보.</li>
+            <li class="purple"><strong>위치 기반 3단계 닉네임 추출 전략:</strong> ①Lv.XX 오른쪽 탐색 → ②서버명 아래 탐색 → ③행 클러스터 탐색 (최후 폴백) 순차 적용.</li>
+            <li class="purple"><strong>자모 혼동 오인식 보정:</strong> ㅣ↔ㅓ 등 OCR 오인식 패턴 분석 후 후보 닉네임 생성 로직 구현.</li>
+          </ul>
+        </div>
+
+        <div class="sub-sec">
+          <div class="sub-label">React 프론트엔드</div>
+          <ul class="detail-list">
+            <li class="purple"><strong>Document Picture-in-Picture API 활용:</strong> 일반 팝업은 게임 전체화면에 가려지는 문제 → Chrome 116+ Document PiP API로 항상 최상위 플로팅 창 구현.</li>
+            <li class="purple"><strong>화면 공유 OCR 파이프라인:</strong> getDisplayMedia API로 화면 캡처 → Canvas ROI 추출(% 좌표, 해상도 무관) → FastAPI 전송.</li>
+            <li class="purple">canvas 조건부 렌더링 시 ref null 버그 → display:none/grid로 가시성만 제어하는 방식으로 해결.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

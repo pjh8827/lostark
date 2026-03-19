@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>박정환 · AX Engineer Portfolio</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0e1a;
+      --surface:  #111827;
+      --surface2: #1a2235;
+      --border:   #1e2d45;
+      --border2:  #2a3f5f;
+
+      --blue:     #3b82f6;
+      --blue-lt:  rgba(59,130,246,.12);
+      --blue-bd:  rgba(59,130,246,.28);
+      --cyan:     #06b6d4;
+      --cyan-lt:  rgba(6,182,212,.10);
+      --cyan-bd:  rgba(6,182,212,.25);
+      --purple:   #8b5cf6;
+      --purple-lt:rgba(139,92,246,.12);
+      --purple-bd:rgba(139,92,246,.28);
+      --green:    #10b981;
+      --green-lt: rgba(16,185,129,.10);
+      --green-bd: rgba(16,185,129,.25);
+      --orange:   #f59e0b;
+      --orange-lt:rgba(245,158,11,.10);
+      --orange-bd:rgba(245,158,11,.25);
+      --red:      #ef4444;
+
+      --text:     #f1f5f9;
+      --sub:      #cbd5e1;
+      --muted:    #64748b;
+      --faint:    #334155;
+    }
+
+    html { font-size: 14px; scroll-behavior: smooth; }
+    body {
+      font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+
+    /* ── Layout ── */
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+
+    @media print {
+      body { background: white; color: #111; font-size: 12px; }
+      :root {
+        --bg: white; --surface: #f8fafc; --surface2: #f1f5f9;
+        --border: #e2e8f0; --border2: #cbd5e1;
+        --text: #111827; --sub: #374151; --muted: #6b7280; --faint: #d1d5db;
+        --blue: #1d4ed8; --blue-lt: #eff6ff; --blue-bd: #bfdbfe;
+        --cyan: #0891b2; --cyan-lt: #ecfeff; --cyan-bd: #a5f3fc;
+        --purple: #7c3aed; --purple-lt: #f5f3ff; --purple-bd: #ddd6fe;
+        --green: #059669; --green-lt: #ecfdf5; --green-bd: #a7f3d0;
+        --orange: #d97706; --orange-lt: #fffbeb; --orange-bd: #fde68a;
+      }
+      .page-break { page-break-before: always; }
+      section { padding: 32px 0 !important; }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,14,26,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 900px; margin: 0 auto; padding: 0 32px;
+      height: 50px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 13.5px; font-weight: 800; letter-spacing: -0.3px; }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-links a {
+      font-size: 12px; color: var(--muted); padding: 4px 10px;
+      border-radius: 6px; transition: all .15s; font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--surface2); }
+
+    /* ── Hero ── */
+    #hero {
+      padding: 80px 0 64px;
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; top: -150px; right: -150px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(59,130,246,.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--blue-lt); border: 1px solid var(--blue-bd);
+      color: #93c5fd; border-radius: 20px; padding: 4px 14px;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.3px;
+      margin-bottom: 20px;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+    #hero h1 {
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 900; letter-spacing: -2px; line-height: 1.1; margin-bottom: 18px;
+    }
+    #hero h1 .accent { color: var(--blue); }
+    #hero h1 .accent2 { color: var(--cyan); }
+    .hero-desc {
+      font-size: 16px; color: var(--sub); max-width: 600px;
+      line-height: 1.85; margin-bottom: 36px;
+    }
+    .hero-desc strong { color: var(--text); }
+
+    .hero-stats {
+      display: flex; gap: 0; flex-wrap: wrap;
+      border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+      max-width: 600px;
+    }
+    .h-stat {
+      flex: 1; padding: 16px 20px; border-right: 1px solid var(--border); text-align: center;
+    }
+    .h-stat:last-child { border-right: none; }
+    .h-stat-num { font-size: 24px; font-weight: 900; color: var(--blue); letter-spacing: -0.5px; line-height: 1; margin-bottom: 4px; }
+    .h-stat-label { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+    /* ── Section base ── */
+    section { padding: 60px 0; border-bottom: 1px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+
+    .sec-eyebrow {
+      font-size: 10.5px; letter-spacing: 2.5px; text-transform: uppercase;
+      font-weight: 700; color: var(--blue); margin-bottom: 6px;
+    }
+    .sec-eyebrow.cyan { color: var(--cyan); }
+    .sec-eyebrow.purple { color: var(--purple); }
+    .sec-eyebrow.green { color: var(--green); }
+    .sec-eyebrow.orange { color: var(--orange); }
+
+    .sec-title {
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 900; letter-spacing: -0.5px; margin-bottom: 8px;
+    }
+    .sec-sub {
+      font-size: 14px; color: var(--sub); max-width: 620px;
+      line-height: 1.8; margin-bottom: 36px;
+    }
+
+    /* ── Tags ── */
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag {
+      font-size: 11px; padding: 3px 9px; border-radius: 5px; font-weight: 500;
+    }
+    .tag.blue { background: var(--blue-lt); color: #93c5fd; border: 1px solid var(--blue-bd); }
+    .tag.cyan { background: var(--cyan-lt); color: #67e8f9; border: 1px solid var(--cyan-bd); }
+    .tag.purple { background: var(--purple-lt); color: #c4b5fd; border: 1px solid var(--purple-bd); }
+    .tag.green { background: var(--green-lt); color: #6ee7b7; border: 1px solid var(--green-bd); }
+    .tag.orange { background: var(--orange-lt); color: #fcd34d; border: 1px solid var(--orange-bd); }
+    .tag.gray { background: var(--surface2); color: var(--sub); border: 1px solid var(--border2); }
+
+    /* ── Agent Workflow Section ── */
+    .workflow-intro {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--blue);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      font-size: 14px;
+      color: var(--sub);
+      line-height: 1.8;
+    }
+    .workflow-intro strong { color: var(--text); }
+    .workflow-intro .quote {
+      font-size: 15px; color: #93c5fd; font-weight: 600; font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    @media (max-width: 640px) { .workflow-grid { grid-template-columns: 1fr; } }
+
+    .wf-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .wf-card:hover { border-color: var(--border2); }
+
+    .wf-head {
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .wf-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; flex-shrink: 0;
+    }
+    .wf-icon.blue { background: var(--blue-lt); }
+    .wf-icon.cyan { background: var(--cyan-lt); }
+    .wf-icon.purple { background: var(--purple-lt); }
+    .wf-icon.green { background: var(--green-lt); }
+    .wf-icon.orange { background: var(--orange-lt); }
+
+    .wf-technique {
+      font-size: 12px; font-weight: 700; color: var(--sub);
+      letter-spacing: 0.3px;
+    }
+    .wf-technique span { color: var(--blue); }
+    .wf-technique.cyan span { color: var(--cyan); }
+    .wf-technique.purple span { color: var(--purple); }
+    .wf-technique.green span { color: var(--green); }
+    .wf-technique.orange span { color: var(--orange); }
+
+    .wf-body { padding: 14px 16px; }
+    .wf-title { font-size: 14px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.2px; }
+    .wf-desc { font-size: 12.5px; color: var(--sub); line-height: 1.65; margin-bottom: 10px; }
+    .wf-desc strong { color: var(--text); }
+
+    .wf-example {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 10px 13px;
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    .wf-example .ex-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+    }
+    .wf-example code {
+      font-family: 'Consolas', 'D2Coding', monospace;
+      font-size: 11.5px; color: #93c5fd;
+      background: rgba(59,130,246,.1);
+      padding: 1px 5px; border-radius: 3px;
+    }
+
+    /* ── WAT Framework ── */
+    .wat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 24px 0;
+    }
+    @media (max-width: 640px) { .wat-grid { grid-template-columns: 1fr; } }
+
+    .wat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 18px;
+      text-align: center;
+    }
+    .wat-letter {
+      font-size: 40px; font-weight: 900; letter-spacing: -2px;
+      line-height: 1; margin-bottom: 6px;
+    }
+    .wat-word { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+    .wat-desc { font-size: 12.5px; color: var(--sub); line-height: 1.6; }
+    .wat-desc strong { color: var(--text); }
+
+    /* ── Pipeline flow ── */
+    .pipeline {
+      display: flex; align-items: center; gap: 0;
+      flex-wrap: wrap; margin: 16px 0;
+    }
+    .pipe-step {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 12px; font-weight: 600; color: var(--sub);
+      text-align: center; line-height: 1.3;
+    }
+    .pipe-step small { display: block; font-size: 10px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+    .pipe-step.blue { border-color: var(--blue-bd); background: var(--blue-lt); color: #93c5fd; }
+    .pipe-step.cyan { border-color: var(--cyan-bd); background: var(--cyan-lt); color: #67e8f9; }
+    .pipe-step.purple { border-color: var(--purple-bd); background: var(--purple-lt); color: #c4b5fd; }
+    .pipe-step.green { border-color: var(--green-bd); background: var(--green-lt); color: #6ee7b7; }
+    .pipe-step.orange { border-color: var(--orange-bd); background: var(--orange-lt); color: #fcd34d; }
+    .pipe-arrow { color: var(--faint); font-size: 14px; margin: 0 6px; flex-shrink: 0; }
+
+    /* ── AI Service Section ── */
+    .ai-detail-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px;
+    }
+    @media (max-width: 640px) { .ai-detail-grid { grid-template-columns: 1fr; } }
+
+    .detail-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 18px;
+    }
+    .detail-card-title {
+      font-size: 13px; font-weight: 800; margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .detail-card-title .icon { font-size: 16px; }
+    ul.dot-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    ul.dot-list li {
+      padding-left: 14px; position: relative;
+      font-size: 12.5px; color: var(--sub); line-height: 1.6;
+    }
+    ul.dot-list li::before {
+      content: '▸'; position: absolute; left: 0;
+      color: var(--blue); font-size: 10px; top: 3px;
+    }
+    ul.dot-list li::before.cyan { color: var(--cyan); }
+    ul.dot-list li strong { color: var(--text); }
+
+    /* ── Code block ── */
+    pre {
+      background: #060d1a;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      font-size: 12px; line-height: 1.65;
+      color: #e2e8f0; overflow-x: auto; margin: 14px 0;
+      font-family: 'Consolas', 'D2Coding', monospace;
+    }
+    .cm { color: #475569; }
+    .kw { color: #7dd3fc; }
+    .fn { color: #a5f3fc; }
+    .nm { color: #fdba74; }
+    .st { color: #86efac; }
+    .hl { background: rgba(59,130,246,.08); display: block; margin: 0 -18px; padding: 0 18px; }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    }
+    @media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 18px;
+    }
+    .skill-group-label {
+      font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+    /* ── Metric cards ── */
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 24px 0; }
+    @media (max-width: 640px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 14px; text-align: center;
+    }
+    .metric-before { font-size: 11px; color: var(--faint); text-decoration: line-through; margin-bottom: 2px; }
+    .metric-after { font-size: 22px; font-weight: 900; color: var(--blue); letter-spacing: -0.5px; line-height: 1; margin-bottom: 5px; }
+    .metric-after.cyan { color: var(--cyan); }
+    .metric-after.purple { color: var(--purple); }
+    .metric-after.green { color: var(--green); }
+    .metric-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+    /* ── Career ── */
+    .career-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 22px;
+      margin-bottom: 14px;
+    }
+    .career-item:last-child { margin-bottom: 0; }
+    .career-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 6px; flex-wrap: wrap; }
+    .career-company { font-size: 16px; font-weight: 800; letter-spacing: -0.3px; }
+    .career-period { font-size: 12px; color: var(--muted); white-space: nowrap; }
+    .career-role { font-size: 12.5px; color: var(--muted); margin-bottom: 10px; }
+
+    /* ── Footer ── */
+    footer {
+      padding: 48px 0 60px; text-align: center;
+    }
+    footer .name { font-size: 22px; font-weight: 900; margin-bottom: 6px; }
+    footer .role { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+    .contact-row {
+      display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+      font-size: 13px; color: var(--muted);
+    }
+
+    /* ── Highlight box ── */
+    .hbox {
+      background: var(--blue-lt);
+      border: 1px solid var(--blue-bd);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin: 16px 0;
+      font-size: 13.5px;
+      color: #bfdbfe;
+      line-height: 1.8;
+    }
+    .hbox strong { color: var(--text); }
+    .hbox.cyan { background: var(--cyan-lt); border-color: var(--cyan-bd); color: #a5f3fc; }
+    .hbox.purple { background: var(--purple-lt); border-color: var(--purple-bd); color: #ddd6fe; }
+    .hbox.green { background: var(--green-lt); border-color: var(--green-bd); color: #a7f3d0; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">박정환 <span>·</span> AX Engineer</div>
+    <div class="nav-links">
+      <a href="#agent">AI Agent 활용</a>
+      <a href="#ai-service">AI 서비스 구축</a>
+      <a href="#career">경력</a>
+      <a href="#skills">기술 스택</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-badge"><span class="dot"></span>AX Engineer Portfolio &nbsp;·&nbsp; AI-Augmented Development</div>
+    <h1>AI 에이전트로<br /><span class="accent">개발하고</span>,<br /><span class="accent2">AI 서비스를</span> 만든다</h1>
+    <p class="hero-desc">
+      저는 Claude Code AI 에이전트를 실전 워크플로우에 통합해 <strong>풀스택 AI 서비스를 직접 설계·구현</strong>한 개발자입니다.<br />
+      단순히 AI 도구를 사용한 것이 아니라, <strong>Plan Mode · Second Brain · WAT 프레임워크</strong> 등
+      검증된 AI 에이전트 워크플로우를 체득하고 복잡한 멀티 서비스 프로젝트에 적용했습니다.
+    </p>
+    <div class="hero-stats">
+      <div class="h-stat">
+        <div class="h-stat-num">3개</div>
+        <div class="h-stat-label">서비스 레이어<br/>단독 설계·구현</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-num">7가지</div>
+        <div class="h-stat-label">Claude Code<br/>실전 기법 적용</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-num">4년</div>
+        <div class="h-stat-label">백엔드 개발<br/>실무 경력</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI AGENT WORKFLOW -->
+<section id="agent">
+  <div class="wrap">
+    <p class="sec-eyebrow">AI Agent Workflow</p>
+    <h2 class="sec-title">Claude Code 실전 워크플로우 적용</h2>
+    <p class="sec-sub">
+      로스트아크 인벤 체커 개인 프로젝트(Spring Boot + React + Python AI OCR 멀티 서비스)를
+      개발하면서 Claude Code의 AI 에이전트 기능을 단순 코드 생성 도구가 아닌
+      <strong>개발 워크플로우의 핵심 협업 파트너</strong>로 활용했습니다.
+    </p>
+
+    <div class="workflow-intro">
+      <div class="quote">"AI 에이전트는 명령을 내리는 도구가 아니라, 함께 설계하고 검증하는 파트너다."</div>
+      이 관점에서 <strong>컨텍스트 관리 · 계획 우선 실행 · TDD 루프 · WAT 프레임워크</strong>를
+      멀티 서비스 프로젝트 전반에 걸쳐 일관되게 적용했습니다.
+      그 결과 혼자서 3개 언어(Java · TypeScript · Python) + 3개 서비스 레이어를 동시에 관리할 수 있었습니다.
+    </div>
+
+    <div class="workflow-grid">
+
+      <!-- Plan Mode -->
+      <div class="wf-card">
+        <div class="wf-head">
+          <div class="wf-icon blue">📋</div>
+          <div>
+            <div class="wf-technique">치트시트 기법 <span>2-1. Plan Mode 먼저</span></div>
+          </div>
+        </div>
+        <div class="wf-body">
+          <div class="wf-title">기능 구현 전 반드시 Plan Mode</div>
+          <div class="wf-desc">
+            OCR 파이프라인, Spring 병렬 처리, Document PiP 오버레이 등
+            <strong>각 기능을 구현하기 전 Shift+Tab으로 Plan Mode 진입</strong>.
+            Claude가 제시한 계획을 검토·수정한 뒤 Accept Mode로 전환하는 루틴을 일관되게 적용.
+            특히 PaddleOCR 3단계 위치 추출 전략 설계 시 잘못된 초기 가정을
+            Plan 단계에서 바로잡아 불필요한 리팩토링을 방지.
+          </div>
+          <div class="wf-example">
+            <div class="ex-label">실제 적용 사례</div>
+            OCR 닉네임 추출 로직 설계 시 → Plan Mode에서 3단계 전략(Lv.XX 우측 / 서버명 하단 / 행 클러스터) 검토 후 구현 진행
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Brain -->
+      <div class="wf-card">
+        <div class="wf-head">
+          <div class="wf-icon cyan">🧠</div>
+          <div>
+            <div class="wf-technique cyan">치트시트 기법 <span>1-1. Second Brain & /memory</span></div>
+          </div>
+        </div>
+        <div class="wf-body">
+          <div class="wf-title">프로젝트 기관 기억(Institutional Memory) 구축</div>
+          <div class="wf-desc">
+            멀티 서비스 프로젝트 특성상 세션이 바뀌어도 <strong>컨텍스트가 끊기지 않도록</strong>
+            <code style="font-size:11px;background:rgba(6,182,212,.1);color:#67e8f9;padding:1px 5px;border-radius:3px;">~/.claude/projects/…/memory/MEMORY.md</code>에
+            핵심 결정 사항을 기록.
+            "sterm 파라미터 +10,000 패턴 발견", "PaddleOCR 2.7.x 버전 고정 이유",
+            "canvas ref null 버그 해결책" 등 도메인 지식을 누적해 매 세션 재설명 비용 제거.
+          </div>
+          <div class="wf-example">
+            <div class="ex-label">실제 기록 예시</div>
+            ## OCR 엔진 선택 결정<br/>
+            - PaddleOCR 2.7.x 고정: Windows oneDNN 충돌<br/>
+            - Tesseract.js 탈락: 한국 게임 폰트 인식률 부족
+          </div>
+        </div>
+      </div>
+
+      <!-- Lazy Loading CLAUDE.md -->
+      <div class="wf-card">
+        <div class="wf-head">
+          <div class="wf-icon purple">📁</div>
+          <div>
+            <div class="wf-technique purple">치트시트 기법 <span>1-2. Lazy Loading CLAUDE.md</span></div>
+          </div>
+        </div>
+        <div class="wf-body">
+          <div class="wf-title">서비스별 컨텍스트 분리로 토큰 최적화</div>
+          <div class="wf-desc">
+            Spring Boot / React / Python OCR 3개 서비스를 각 폴더별 CLAUDE.md로 분리.
+            <strong>CLAUDE.md에는 참조만, 상세 내용은 별도 파일</strong>로 관리해
+            각 서비스 작업 시에만 해당 컨텍스트가 로드되도록 설계.
+            불필요한 토큰 소비 없이 서비스 전환 시 집중도 유지.
+          </div>
+          <div class="wf-example">
+            <div class="ex-label">폴더 구조 적용</div>
+            backend/CLAUDE.md → @docs/api-design.md 참조만<br/>
+            ocr-service/CLAUDE.md → @docs/ocr-pipeline.md 참조만
+          </div>
+        </div>
+      </div>
+
+      <!-- TDD 루프 -->
+      <div class="wf-card">
+        <div class="wf-head">
+          <div class="wf-icon green">🔄</div>
+          <div>
+            <div class="wf-technique green">치트시트 기법 <span>2-2. TDD 기반 스마트 코딩</span></div>
+          </div>
+        </div>
+        <div class="wf-body">
+          <div class="wf-title">작은 변경 → 테스트 → 린트 → 커밋 루프</div>
+          <div class="wf-desc">
+            크롤링·파싱 로직에 <strong>WireMock 기반 통합 테스트</strong>를 먼저 작성하고
+            Claude와 함께 구현하는 TDD 방식 적용.
+            "대상자: 섹션 오탐 방지", "5가지 분리자 패턴 처리" 등
+            실사용자 제보로 발견된 엣지케이스도 테스트 → 구현 순서로 안전하게 반영.
+            문제 발생 시 마지막 커밋으로 즉시 복귀 가능.
+          </div>
+          <div class="wf-example">
+            <div class="ex-label">핵심 루프</div>
+            WireMock 테스트 작성 → Claude 구현 → mvn test → 커밋 → 다음 케이스
+          </div>
+        </div>
+      </div>
+
+      <!-- TODO.md -->
+      <div class="wf-card">
+        <div class="wf-head">
+          <div class="wf-icon orange">✅</div>
+          <div>
+            <div class="wf-technique orange">치트시트 기법 <span>2-6. 로컬 TODO.md 활용</span></div>
+          </div>
+        </div>
+        <div class="wf-body">
+          <div class="wf-title">TODO.md로 멀티 서비스 작업 연속성 유지</div>
+          <div class="wf-desc">
+            Spring Boot · React · Python 3개 서비스를 병렬로 개발하면서
+            <strong>TODO.md로 전체 작업 흐름을 관리</strong>.
+            세션 시작 시 "TODO.md 읽고 첫 번째 항목부터 시작"으로 지시,
+            세션 종료 시 "TODO.md 업데이트해줘"로 진행 상황 자동 반영.
+            여러 세션에 걸쳐도 작업 연속성을 완벽하게 유지.
+          </div>
+          <div class="wf-example">
+            <div class="ex-label">실제 TODO 구조</div>
+            - [x] OCR 3단계 추출 전략 구현<br/>
+            - [x] Spring 병렬 ThreadPool 분리<br/>
+            - [ ] Document PiP 오버레이 버그 수정
+          </div>
+        </div>
+      </div>
+
+      <!-- Thinking 로그 + 에러 -->
+      <div class="wf-card">
+        <div class="wf-head">
+          <div class="wf-icon blue">🔍</div>
+          <div>
+            <div class="wf-technique">치트시트 기법 <span>2-3. Thinking 로그 · 2-5. 에러 그대로</span></div>
+          </div>
+        </div>
+        <div class="wf-body">
+          <div class="wf-title">AI의 추론 과정 모니터링 + 에러 원문 투입</div>
+          <div class="wf-desc">
+            Thinking 로그를 통해 <strong>Claude가 잘못된 가정을 하는 순간 즉시 Escape로 중단</strong>.
+            특히 OCR 엔진 비교 과정에서 EasyOCR을 채택하려는 방향을 초반에 차단하고
+            한국 게임 폰트 특성에 맞는 PaddleOCR로 재방향 설정.
+            스택 트레이스는 해석 없이 <strong>에러 로그 원문 그대로 Claude에 투입</strong>해
+            정보 손실 없이 디버깅.
+          </div>
+          <div class="wf-example">
+            <div class="ex-label">적용 사례</div>
+            Python oneDNN 충돌 에러 → 스택 트레이스 전체 붙여넣기<br/>
+            → Claude가 즉시 PaddleOCR 버전 pinning 해결책 제시
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- WAT Framework -->
+    <div style="margin-top: 16px;">
+      <p class="sec-eyebrow" style="margin-bottom:8px;">WAT Framework 적용</p>
+      <div class="hbox">
+        <strong>인벤 체커 전체 개발 과정을 WAT(Workflows · Agents · Tools) 프레임워크로 구조화</strong>했습니다.
+        단순히 Claude에게 코드를 요청하는 것이 아니라, 복잡한 멀티 서비스 프로젝트를
+        체계적인 에이전트 오케스트레이션으로 관리했습니다.
+      </div>
+      <div class="wat-grid">
+        <div class="wat-card">
+          <div class="wat-letter" style="color:var(--blue);">W</div>
+          <div class="wat-word">Workflows</div>
+          <div class="wat-desc">
+            <strong>서비스별 워크플로우 정의</strong><br/>
+            OCR 파이프라인 / Spring 병렬 처리 / React PiP 오버레이를 각각 독립된 워크플로우로 설계.
+            plain English로 단계를 명확히 정의 후 에이전트에게 위임.
+          </div>
+        </div>
+        <div class="wat-card">
+          <div class="wat-letter" style="color:var(--cyan);">A</div>
+          <div class="wat-word">Agents</div>
+          <div class="wat-desc">
+            <strong>Self-healing + Sub-agent 병렬 처리</strong><br/>
+            Claude Code 에이전트가 테스트 실패 시 스스로 수정하는 Self-healing 루프 활용.
+            복잡한 작업은 서비스별 세션(Sub-agent)으로 분리해 병렬 진행.
+          </div>
+        </div>
+        <div class="wat-card">
+          <div class="wat-letter" style="color:var(--purple);">T</div>
+          <div class="wat-word">Tools</div>
+          <div class="wat-desc">
+            <strong>작은 도구들의 조합</strong><br/>
+            Read / Write / Edit / Bash / Grep / Glob 등 원자적 도구를 조합.
+            WireMock(테스트) · Jsoup(크롤링) · PaddleOCR(AI) 등 목적별 전문 도구 선택.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI SERVICE -->
+<section id="ai-service">
+  <div class="wrap">
+    <p class="sec-eyebrow cyan">AI Service Development</p>
+    <h2 class="sec-title">AI OCR 마이크로서비스 직접 설계·구현</h2>
+    <p class="sec-sub">
+      AI 에이전트를 <em>활용</em>해 개발한 것을 넘어, <em>AI 서비스 자체</em>도 직접 설계했습니다.
+      Python FastAPI + PaddleOCR 기반 OCR 마이크로서비스의 전처리·추출·보정 파이프라인을
+      도메인 분석부터 구현까지 단독으로 완성했습니다.
+    </p>
+
+    <!-- 전체 파이프라인 -->
+    <div style="margin-bottom:28px;">
+      <div style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">전체 서비스 파이프라인</div>
+      <div class="pipeline" style="gap:6px;">
+        <div class="pipe-step cyan">React SPA<small>화면 공유 캡처<br/>Canvas ROI 추출</small></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step purple">Python FastAPI<small>HSV 마스크 전처리<br/>PaddleOCR PP-OCRv4</small></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step purple">위치 기반 추출<small>3단계 전략<br/>자모 혼동 보정</small></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step blue">Spring Boot<small>CompletableFuture<br/>병렬 크롤링</small></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step green">결과 반환<small>오탐 필터링<br/>PiP 오버레이 표시</small></div>
+      </div>
+    </div>
+
+    <div class="ai-detail-grid">
+      <div class="detail-card">
+        <div class="detail-card-title"><span class="icon">🤖</span> OCR 엔진 선택 과정</div>
+        <ul class="dot-list">
+          <li><strong>Tesseract.js</strong> (브라우저) — 한국 게임 폰트 인식률 부족으로 탈락</li>
+          <li><strong>EasyOCR</strong> (Python) — 범용 모델, 한글 정확도 한계로 탈락</li>
+          <li><strong>PaddleOCR PP-OCRv4</strong> — 한국어 특화 모델 채택. Windows oneDNN 충돌로 2.7.x 버전 고정</li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-title"><span class="icon">🎯</span> 위치 기반 3단계 추출 전략</div>
+        <ul class="dot-list">
+          <li><strong>전략 1:</strong> Lv.XX 텍스트 우측 동일 Y좌표 탐색</li>
+          <li><strong>전략 2:</strong> 서버명(8개 제외 목록) 하단 동일 X열 탐색</li>
+          <li><strong>전략 3:</strong> Y좌표 기준 행 클러스터 분류 후 탐색 (최후 폴백)</li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-title"><span class="icon">⚡</span> Spring Boot 병렬 처리 최적화</div>
+        <ul class="dot-list">
+          <li>sterm +10,000 규칙 파악 → 15페이지 URL 선계산 후 <strong>CompletableFuture 동시 요청</strong></li>
+          <li>게시글 본문 확인 ThreadPool(×10) + 부캐 검색 ThreadPool(×6) 목적별 분리</li>
+          <li>전체 강화 검색 <strong>수 분 → 수 초</strong></li>
+        </ul>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-title"><span class="icon">🛡️</span> 크롤링 신뢰도 확보</div>
+        <ul class="dot-list">
+          <li>개별 게시글 fetch 후 <strong>"대상자:" 섹션 내 닉네임 존재 여부 정밀 검증</strong></li>
+          <li>오탐 방지 3단계: 섹션 범위 제한 → 대상자 구간 추출 → 단어 경계 매칭</li>
+          <li>실사용자 제보 기반 <strong>5가지 분리자 패턴</strong> 전부 처리</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-before">수 분</div>
+        <div class="metric-after">수 초</div>
+        <div class="metric-desc">강화 검색<br/>병렬 처리 최적화</div>
+      </div>
+      <div class="metric">
+        <div class="metric-after cyan">3단계</div>
+        <div class="metric-desc">닉네임 추출<br/>폴백 전략</div>
+      </div>
+      <div class="metric">
+        <div class="metric-after purple">3개</div>
+        <div class="metric-desc">서비스 레이어<br/>단독 구현</div>
+      </div>
+      <div class="metric">
+        <div class="metric-after green">100%</div>
+        <div class="metric-desc">풀스택 + AI<br/>기여도</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section id="career">
+  <div class="wrap">
+    <p class="sec-eyebrow green">Career</p>
+    <h2 class="sec-title">경력 — 백엔드 성능·정합성·구조 설계</h2>
+    <p class="sec-sub">
+      4년간 전자결재 시스템 백엔드를 전담하며 대규모 데이터 환경에서의 성능 최적화,
+      MSA 아키텍처 전환, 운영 안정성 확보 등 백엔드 엔지니어링 핵심 역량을 쌓았습니다.
+    </p>
+
+    <div class="career-item">
+      <div class="career-header">
+        <div class="career-company">(주)가비아 &nbsp;<span style="font-size:13px;font-weight:500;color:var(--muted);">· 전자결재 백엔드 파트장</span></div>
+        <div class="career-period">2020.11 – 2024.10 · 4년</div>
+      </div>
+      <div class="career-role">정규직 · 대리</div>
+      <div class="tags" style="margin-bottom:14px;">
+        <span class="tag blue">Java 17</span>
+        <span class="tag blue">Spring Boot 3</span>
+        <span class="tag blue">MySQL/Aurora</span>
+        <span class="tag blue">MongoDB</span>
+        <span class="tag blue">Kafka</span>
+        <span class="tag blue">Docker</span>
+        <span class="tag blue">Kubernetes</span>
+        <span class="tag gray">PHP</span>
+        <span class="tag gray">CodeIgniter</span>
+        <span class="tag gray">Laravel</span>
+      </div>
+      <div class="ai-detail-grid" style="margin-bottom:0;">
+        <div class="detail-card">
+          <div class="detail-card-title"><span class="icon">🚀</span> 차세대 REST API 전환 (2022-2024)</div>
+          <ul class="dot-list">
+            <li>트랜잭션 범위 재설계 → API 응답 <strong>3,000ms → 100ms</strong> (97% 개선)</li>
+            <li>Kafka 이벤트 자동 재처리 → 수동 복구 <strong>월 수십 건 → 0건</strong></li>
+            <li>MySQL + MongoDB 멀티 DB 아키텍처 설계</li>
+            <li>K8s 롤링 배포 파이프라인 구축</li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <div class="detail-card-title"><span class="icon">🗄️</span> 레거시 유지보수/고도화 (2020-2024)</div>
+          <ul class="dot-list">
+            <li><strong>1,000만 건+</strong> 전자결재 문서 환경 성능 최적화</li>
+            <li>office_no 파티셔닝·인덱스 재설계 → <strong>1,500ms → 300ms</strong></li>
+            <li>차세대 전환을 위한 레거시 분석·문서화·연계 구조 설계</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <p class="sec-eyebrow orange">Skills</p>
+    <h2 class="sec-title">기술 스택 — AX Engineering 관련 역량 중심</h2>
+
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-label">AI · LLM · Agent</div>
+        <div class="skill-tags">
+          <span class="tag cyan">Claude Code (AI Agent)</span>
+          <span class="tag cyan">PaddleOCR PP-OCRv4</span>
+          <span class="tag cyan">OpenCV</span>
+          <span class="tag cyan">FastAPI</span>
+          <span class="tag cyan">Python</span>
+          <span class="tag cyan">WAT Framework</span>
+          <span class="tag cyan">Plan Mode</span>
+          <span class="tag cyan">MCP 연동</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Backend · Platform</div>
+        <div class="skill-tags">
+          <span class="tag blue">Java 17</span>
+          <span class="tag blue">Spring Boot 3</span>
+          <span class="tag blue">CompletableFuture</span>
+          <span class="tag blue">REST API</span>
+          <span class="tag blue">Kafka</span>
+          <span class="tag blue">Docker</span>
+          <span class="tag blue">Kubernetes</span>
+          <span class="tag blue">PHP / Laravel</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">DB · Test · Frontend</div>
+        <div class="skill-tags">
+          <span class="tag purple">MySQL / Aurora</span>
+          <span class="tag purple">MongoDB</span>
+          <span class="tag purple">DB Partitioning</span>
+          <span class="tag purple">JUnit5</span>
+          <span class="tag purple">WireMock</span>
+          <span class="tag purple">React</span>
+          <span class="tag purple">TypeScript</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hbox green" style="margin-top:24px;">
+      <strong>AX Engineer로서의 차별점</strong><br/>
+      저는 AI 서비스를 <em>이론이 아닌 실전에서</em> 설계·구현했고,
+      AI 에이전트를 <em>규칙이 아닌 워크플로우로</em> 체득했습니다.
+      "AI로 무엇을 할 수 있는가"가 아닌 <strong>"AI와 함께 어떻게 더 나은 시스템을 만드는가"</strong>를
+      직접 경험한 개발자입니다.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="name">박 정 환</div>
+    <div class="role">AX Engineer · Backend Developer · AI-Augmented Developer</div>
+    <div class="contact-row">
+      <span>📧 pjh5929@naver.com</span>
+      <span>📞 010-7185-3377</span>
+      <span>💼 희망연봉 5,500만원</span>
+    </div>
+    <div style="margin-top:24px;font-size:11px;color:var(--faint);">
+      © 2026 박정환 · AX Engineer 지원용 포트폴리오 · ㈜디비아이엔씨
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
