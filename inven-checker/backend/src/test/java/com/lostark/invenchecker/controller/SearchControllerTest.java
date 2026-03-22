@@ -2,6 +2,7 @@ package com.lostark.invenchecker.controller;
 
 import com.lostark.invenchecker.model.BoardPost;
 import com.lostark.invenchecker.service.InvenSearchService;
+import com.lostark.invenchecker.service.LostArkApiService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ class SearchControllerTest {
 
     @MockBean
     InvenSearchService searchService;
+
+    @MockBean
+    LostArkApiService lostArkApiService;
 
     @Test
     @DisplayName("정상 닉네임 - 결과 반환")

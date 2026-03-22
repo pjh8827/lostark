@@ -1,0 +1,28 @@
+# Build outputs
+**/target/
+**/dist/
+**/build/
+
+# Dependencies
+**/node_modules/
+
+# IDE / Editor
+.idea/
+.vscode/
+*.iml
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env / Secrets
+.env
+.env.local
+
+# Debug images
+*.png
+
+# Misc
+*.log
+2026-*.txt
