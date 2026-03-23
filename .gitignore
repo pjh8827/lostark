@@ -29,3 +29,5 @@ Thumbs.db
 
 # Private services
 inven-checker/ocr-service/
+inven-checker/backend/
+inven-checker/frontend/
