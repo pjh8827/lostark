@@ -26,3 +26,6 @@ Thumbs.db
 # Misc
 *.log
 2026-*.txt
+
+# Private services
+inven-checker/ocr-service/
